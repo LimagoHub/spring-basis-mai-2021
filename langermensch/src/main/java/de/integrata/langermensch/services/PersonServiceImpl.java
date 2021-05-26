@@ -1,25 +1,37 @@
 package de.integrata.langermensch.services;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import de.integrata.langermensch.repositories.PersonRepository;
 import de.integrata.langermensch.repositories.entities.Person;
 
-@Service
+
+
 public class PersonServiceImpl implements PersonService {
 
 	private final PersonRepository personRepository;
+	private final List<String> antipathen;
 
-	public PersonServiceImpl(final PersonRepository personRepository) {
+	public PersonServiceImpl(final PersonRepository personRepository,  final List<String> antipathen) {
 		this.personRepository = personRepository;
+		this.antipathen = antipathen;
 	}
 	
 	@Override
+	
 	public void speichern(Person person) throws PersonServiceException {
 		try {
 			speichernImpl(person);
 		} catch (RuntimeException e) {
 			throw new PersonServiceException(e);
+		}
+	
+	}
+
+	@Override
+	public void massenSpeichern(List<Person> personen) throws PersonServiceException {
+		for (Person person : personen) {
+			speichern(person);
 		}
 	
 	}
@@ -37,7 +49,7 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	private void businessCheck(Person person) throws PersonServiceException {
-		if(person.getVorname().equals("Attila"))
+		if(antipathen.contains(person.getVorname()))
 			throw new PersonServiceException("Antipath");
 	}
 
