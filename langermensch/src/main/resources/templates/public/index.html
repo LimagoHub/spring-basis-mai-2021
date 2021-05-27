@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+
+<title>WebJars Demo</title>
+
+</head>
+<body>
+	Hallo Web
+	<p th:text="'Hello, ' + ${name} + '!'" />
+	<p th:text="${ort}" />
+	
+	<p th:text="${john.id}" />
+	<p th:text="${john.vorname}" />
+	<p th:text="${john.nachname}" />
+	
+	
+</body>
+</html>
