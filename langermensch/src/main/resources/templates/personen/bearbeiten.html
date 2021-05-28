@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+
+<title>Personen</title>
+
+</head>
+<body>
+	
+
+			<form action="#" th:action="@{/personen/save}" th:object="${person}" method="post">
+				Id <input type="text" th:field="*{id}" id="id" readonly="readonly"><br>
+				Vorname <input type="text" th:field="*{vorname}" id="vorname"><br>
+				Nachname <input type="text" th:field="*{nachname}" id="nachname"><br>
+				<button type="submit">Speichern</button><br>
+				<a href="/personen">zurück</a>
+			</form>
+	
+			
+</body>
+</html>

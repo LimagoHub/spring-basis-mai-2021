@@ -11,11 +11,19 @@
 	Hallo Web
 	<p th:text="'Hello, ' + ${name} + '!'" />
 	<p th:text="${ort}" />
-	
-	<p th:text="${john.id}" />
-	<p th:text="${john.vorname}" />
-	<p th:text="${john.nachname}" />
-	
-	
+
+	<table border="1">
+		<tr>
+			<th>id</th>
+			<th>vorname</th>
+			<th>nachname</th>
+		</tr>
+		<tr th:each="john : ${johns}">
+			<td th:text="${john.id}"/>
+			<td th:text="${john.vorname}"/>
+			<td th:text="${john.nachname}"/>
+		</tr>
+	</table>
+
 </body>
 </html>

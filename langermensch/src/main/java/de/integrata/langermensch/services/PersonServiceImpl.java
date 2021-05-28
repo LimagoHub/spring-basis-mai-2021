@@ -15,6 +15,7 @@ public class PersonServiceImpl implements PersonService {
 	public PersonServiceImpl(final PersonRepository personRepository,  final List<String> antipathen) {
 		this.personRepository = personRepository;
 		this.antipathen = antipathen;
+		
 	}
 	
 	@Override
