@@ -35,11 +35,16 @@ public class PersonRestController {
 		this.repo = repo;
 	}
 	
+	// Parameter via URL übergeben (nur einfache Typen wie String, int etc. Keine Objekte
+	
 	@GetMapping(path="/{id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Person> getPerson(@PathVariable String id) {
 		return ResponseEntity.of(repo.findById(id));
 	}
 	
+	
+	// Parameter via URL mit "?"-Operator als Key-Value Pairs übergeben (nur einfache Typen wie String, int etc. Keine Objekte
+	// z.B. http://localhost:8080/v1/personen?vorname=fritz&nachname=schmitt
 	@GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Iterable<Person>> getAllPerson(@RequestParam(required = false) String vorname, @RequestParam(required = false) String nachname) {
 		return ResponseEntity.ok(repo.findAll());
@@ -58,6 +63,9 @@ public class PersonRestController {
 		
 		return ResponseEntity.notFound().build();
 	}
+	
+	
+	// Parameterobjekte  via Body als JSON, XML, .... übergeben
 	
 	@PutMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponse(responseCode = "201", description = "person inserted")
@@ -93,3 +101,19 @@ public class PersonRestController {
 
 
 }
+
+
+//<dependency>
+//<groupId>org.springdoc</groupId>
+//<artifactId>springdoc-openapi-ui</artifactId>
+//<version>1.5.9</version>
+//</dependency>
+
+
+//Verb		Safe	Idempotent		
+//GET		ja		ja		Daten holen
+//DELETE	nein	ja		löscht daten
+//PUT		nein	ja		save oder update
+//POST		nein	nein	save oder update
+//				
+//POST		ja	ja		daten mittels Parameterobjekt holen
