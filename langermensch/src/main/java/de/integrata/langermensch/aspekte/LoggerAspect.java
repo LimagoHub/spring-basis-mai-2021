@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class LoggerAspect {
 	
 	
-	@Before("PointCuts.calculatorMethodes()")
+	@Before("PointCuts.restControllerMethodes()")
 	public void logBeforeAdvice(JoinPoint joinPoint) {
 		log.warn("Methode {} wurde aufgerufen", joinPoint.getSignature().getName());
 	}
